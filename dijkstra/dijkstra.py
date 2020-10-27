@@ -15,15 +15,16 @@ class AdjList:
 
 from heapq import heappush, heappop
 
-def dijkstra(g, source):
+def spfa(g, source):
     inf = int(1e9)
 
-    # inicializando o conjunto dos visitados como vazio
+    # inicializando o custos dos vertices
     cost = [inf] * (g.n+1)
     pred = [0] * (g.n+1)
     
     q = []
 
+    # considerando o custo da fonte como 0
     cost[source] = 0
     pred[source] = source
 
@@ -44,11 +45,11 @@ def dijkstra(g, source):
 
 g = AdjList(7)
 
-edges = [(1, 2, 3), (1, 4, 4), \
+edges = [(1, 2, 3), (1, 4, 6), \
          (2, 4, 1), (2, 3, 5), (2, 6, 2), \
          (3, 4, 10), (3, 5, 8), \
          (4, 5, 9), \
-         (5, 7, 7), \
+         (5, 7, 1), \
          (6, 7, 6) ]
 
 for (u, v, w) in edges:
@@ -56,4 +57,4 @@ for (u, v, w) in edges:
 
 print(g)
 
-print (dijkstra(g, 1))
+print (spfa(g, 1))
